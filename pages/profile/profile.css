@@ -1,0 +1,25 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.user-box {
+	height: 260rpx;
+}
+
+.page {
+	position: relative;
+}
+
+.btn-container {
+	position: fixed;
+	bottom: 40rpx;
+	left: 40rpx;
+	width: 100vw;
+	height: 80rpx;
+}
+
+.btn-container button {
+	width: calc(100vw - 80rpx);
+}

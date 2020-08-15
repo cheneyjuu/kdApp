@@ -1,0 +1,84 @@
+.nav-bg-color {
+	background: linear-gradient(to right, #49250c, #0b1f23, #322107 10%, #49250c 90%);
+	color: white;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	background-color: #be7d4c;
+}
+
+.container .header {
+	width: 100vw;
+	height: 42vh;
+	background-image: url('https://kdapp.oss-cn-shanghai.aliyuncs.com/edu.png');
+	background-size: cover;
+}
+
+.container .content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+}
+
+.container .content > .title {
+	font-size: 2.5em;
+	font-weight: 500;
+	margin: 30rpx 0;
+}
+
+.container .content > .title::after {
+	content: '';
+	display: block;
+	width: 120%;
+	transform: translateX(-10%);
+	border: 2rpx solid white;
+}
+
+.desc-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 20rpx;
+	margin: 0 20rpx;
+}
+
+.desc-container > .desc-item {
+	border-right: 2rpx dashed #FFFFFF;
+	padding: 0 8rpx;
+}
+
+.desc-container > .desc-item:last-child {
+	border: none;
+}
+
+.desc-container > .desc-item .title {
+	font-weight: 500;
+	letter-spacing: 2rpx;
+}
+
+.desc-container > .desc-item .desc {
+	font-size: 0.8em;
+	font-weight: 400;
+	letter-spacing: 2rpx;
+	text-indent: 2em;
+}
+
+.btn-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 40rpx;
+}
+
+.btn-container button {
+	width: 300rpx;
+	height: 80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2rpx solid #faefa2;
+	background: linear-gradient(to bottom, #efb53b, #e6812a);
+	color: white;
+	letter-spacing: 4rpx;
+}

@@ -1,0 +1,61 @@
+.nav-bg-color {
+	background: linear-gradient(to right, #a2bc9f, #adc7ae);
+	color: white;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	background-color: #a2bc9f;
+}
+
+.container .header {
+	width: 100vw;
+	height: 45vh;
+	background-image: url('https://kdapp.oss-cn-shanghai.aliyuncs.com/language-bg.png');
+	background-size: 100% 100%;
+}
+
+.container .content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+}
+
+.container .content .title {
+	font-size: 2.5em;
+	font-weight: 500;
+	margin: 30rpx 0;
+}
+
+.container .content .title::after {
+	content: '';
+	display: block;
+	width: 140%;
+	transform: translateX(-15%);
+	border: 2rpx solid white;
+}
+
+.container .content .desc {
+	width: 80vw;
+	text-indent: 2em;
+}
+
+.btn-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 40rpx;
+}
+
+.btn-container button {
+	width: 300rpx;
+	height: 80rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2rpx solid #52a08c;
+	background: linear-gradient(to bottom, #85ddc0, #56c08d);
+	color: white;
+	letter-spacing: 4rpx;
+}

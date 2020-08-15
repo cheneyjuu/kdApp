@@ -1,0 +1,35 @@
+.nav-bg-color {
+	background: linear-gradient(to right, #d5c6d3, #0b1f23);
+	color: white;
+}
+
+.mail-info {
+	padding: 0 20rpx;
+}
+.mail-address {
+	color: #356EDD;
+	padding-left: 10rpx;
+}
+
+.text-italic {
+	font-style: italic;
+}
+
+.required::before {
+	content: '*';
+	display: inline-block;
+	color: red;
+	margin-right: 8rpx;
+}
+
+.none-required {
+	margin-left: 18rpx;
+}
+
+button:disabled {
+	color: #FFFFFF;
+}
+
+.btn-container button {
+	width: 220rpx;
+}

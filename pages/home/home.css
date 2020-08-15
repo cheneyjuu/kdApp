@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+	position: relative;
+}
+
+.menu-items {
+    position: absolute;
+    width: 100vw;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.menu-item .cuIcon {
+    font-size: 30px;
+}
+
+.boxes {
+	width: 90vw;
+	margin-left: 5vw;
+	position: absolute;
+	top: 40vh;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	row-gap: 40rpx;
+	justify-items: center;
+}
+
+.box-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.boxes .box-item {
+	box-sizing: border-box;
+	width: 30vw;
+	height: 30vw;
+	border-radius: 32rpx;
+	background-color: #67b7f2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.boxes .box-item .eosfont {
+	color: #FFFFFF;
+	font-size: 5.5em;
+}

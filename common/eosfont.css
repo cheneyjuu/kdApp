@@ -1,0 +1,47 @@
+@font-face {font-family: "eosfont";
+  src: url('//at.alicdn.com/t/font_1982378_mun8uro9ji9.ttf') format('truetype'); /* iOS 4.1- */
+}
+
+.eosfont {
+  font-family: "eosfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.eosjiaoyu:before {
+  content: "\e714";
+}
+
+.eosyishu-:before {
+  content: "\e619";
+}
+
+.eoswaiyu:before {
+  content: "\e617";
+}
+
+.eosjiangbei1:before {
+  content: "\e631";
+}
+
+.eosjieshao:before {
+  content: "\e6fe";
+}
+
+.eoszuopin:before {
+  content: "\e67f";
+}
+
+.eoszuopin1:before {
+  content: "\e603";
+}
+
+.eostishi:before {
+  content: "\e616";
+}
+
+.eosjiangbei:before {
+  content: "\e6ad";
+}

@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+.page-bg {
+	width: 100vw;
+	height: 100vh;
+	object-fit: contain;
+}
+
+.sub-title {
+	text-indent: 2em;
+	position: absolute;
+	top: 42vh;
+	margin: 0 45rpx;
+	color: #094ea1;
+	line-height: 1.8em;
+	font-weight: 500;
+}
+
+button {
+	width: 250rpx;
+	background: linear-gradient(to right, #c074d3, #24d0f7);
+	box-shadow: 4upx 4upx 0upx rgba(36, 111, 210, 0.5);
+	border: 4rpx solid #01bff0;
+	color: #FFFFFF;
+	letter-spacing: 4rpx;
+}
+
+button.language {
+	position: absolute;
+	top: 68vh;
+	left: 19vw;
+	height: 58rpx;
+}
+
+button.art {
+	position: absolute;
+	top: 76vh;
+	left: 27vw;
+	height: 58rpx;
+}
+
+button.edu {
+	position: absolute;
+	top: 82vh;
+	left: 41vw;
+	width: 300rpx;
+	height: 58rpx;
+}
+
+.text-dark-blue {
+	color: #003076;
+}

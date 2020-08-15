@@ -1,0 +1,275 @@
+{
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/layout",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/background",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/text",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/icon",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/button",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/design",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/tag",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/avatar",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/progress",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/shadow",
+			"style": {}
+		},
+		{
+			"path": "pages/basics/loading",
+			"style": {}
+		},
+		{
+			"path": "pages/component/bar",
+			"style": {}
+		},
+		{
+			"path": "pages/component/nav",
+			"style": {}
+		},
+		{
+			"path": "pages/component/list",
+			"style": {}
+		},
+		{
+			"path": "pages/component/card",
+			"style": {}
+		},
+		{
+			"path": "pages/component/form",
+			"style": {}
+		},
+		{
+			"path": "pages/component/timeline",
+			"style": {}
+		},
+		{
+			"path": "pages/component/chat",
+			"style": {}
+		},
+		{
+			"path": "pages/component/swiper",
+			"style": {}
+		},
+		{
+			"path": "pages/component/modal",
+			"style": {}
+		},
+		{
+			"path": "pages/component/steps",
+			"style": {}
+		}, {
+			"path": "pages/plugin/indexes",
+			"style": {}
+		}, {
+			"path": "pages/plugin/animation",
+			"style": {}
+		}, {
+			"path": "pages/plugin/drawer",
+			"style": {}
+		}, {
+			"path": "pages/plugin/verticalnav",
+			"style": {}
+		}
+	    ,{
+            "path" : "pages/home/home",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/activity-intro/activity-intro",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/notice/notice",
+            "style" : {}
+        }
+		,{
+		    "path" : "pages/notice/details",
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/work/work",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/work-show/art",
+            "style" : {}
+        },
+		{
+		    "path" : "pages/work-show/edu",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/work-show/language",
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/profile/profile",
+            "style" : {}
+        },
+		{
+		    "path" : "pages/profile/user-info",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/profile/my-work",
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/awarded/awarded",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/language/language",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/work-detail/work-detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/submit-type/submit-type",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/art/art",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/edu/edu",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"mp-alipay": {
+			/* 支付宝小程序特有相关 */
+			"transparentTitle": "always",
+			"allowsBounceVertical": "NO"
+		},
+		"navigationBarBackgroundColor": "#0081ff",
+		"navigationBarTitleText": "ColorUi for UniApp",
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "white"
+	},
+	"usingComponts": true,
+		"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+				"name": "首页", //模式名称
+				"path": "pages/home/home", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "活动介绍", //模式名称
+				"path": "pages/activity-intro/activity-intro", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "活动通知", //模式名称
+				"path": "pages/notice/notice", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "活动详情", //模式名称
+				"path": "pages/notice/details", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "提交作品", //模式名称
+				"path": "pages/work/work", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "作品展示-art", //模式名称
+				"path": "pages/work-show/art", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "作品展示-edu", //模式名称
+				"path": "pages/work-show/edu", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "作品展示-language", //模式名称
+				"path": "pages/work-show/language", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "个人中心", //模式名称
+				"path": "pages/profile/profile", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "更新个人信息", //模式名称
+				"path": "pages/profile/user-info", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "获奖作品", //模式名称
+				"path": "pages/awarded/awarded", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "外语", //模式名称
+				"path": "pages/language/language", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "艺术", //模式名称
+				"path": "pages/art/art", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "教育", //模式名称
+				"path": "pages/edu/edu", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "第二层", //模式名称
+				"path": "pages/work-detail/work-detail", //启动页面
+				"query": "title=外语类" //启动参数
+			},
+			{
+				"name": "第三层", //模式名称
+				"path": "pages/submit-type/submit-type", //启动页面
+				"query": "" //启动参数
+			},
+			{
+				"name": "我的作品", //模式名称
+				"path": "pages/profile/my-work", //启动页面
+				"query": "" //启动参数
+			}
+		]
+	}
+
+}

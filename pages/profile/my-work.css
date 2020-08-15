@@ -1,0 +1,80 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.nav-bg-color {
+	background: linear-gradient(to right, #d5c6d3, #0b1f23);
+	color: white;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+.btn-container {
+	display: flex;
+	align-items: center;
+}
+
+.btn-container button {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0;
+}
+
+.cus-activity {
+	width: 100%;
+	justify-content: space-between;
+}
+
+.activity-info {
+	display: flex;
+	align-items: center;
+}
+
+.activity-info .user {
+	padding-right: 10rpx;
+	color: #aaaaaa;
+}
+
+.activity-action {
+	display: flex;
+	flex: 3;
+	justify-content: flex-end;
+	padding-right: 28rpx;
+}
+
+.cu-item image {
+	width: 100%;
+	height: 300rpx;
+}
+
+.cu-item video {
+	width: calc(100vw - 60rpx);
+	margin: 20rpx 30rpx 0;
+	overflow: hidden;
+	border-radius: 10rpx;
+}
+
+.padding-right-sm {
+	padding-right: 10rpx;
+}
+
+.header {
+	width: 100vw;
+	height: 43vh;
+	background-image: url('https://kdapp.oss-cn-shanghai.aliyuncs.com/art-bg.png');
+	background-size: cover;
+	transform: translateY(-13vh);
+}
+
+.cu-card {
+	transform: translateY(-13vh);
+}
