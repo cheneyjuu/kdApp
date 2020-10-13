@@ -14,13 +14,13 @@
 }
 .header {
 	width: 100vw;
-	height: 43vh;
-	background-image: url('https://kdapp.oss-cn-shanghai.aliyuncs.com/language-bg.png');
+	height: 30vh;
+	background-image: url('https://kdapp.oss-cn-shanghai.aliyuncs.com/language-inner-page.png');
 	background-size: cover;
-	transform: translateY(-13vh);
+	transform: translateY(-2vh);
 }
 .container {
-	transform: translateY(-13vh);
+	transform: translateY(-2vh);
 }
 .work-container {
 	width: 100vw;
@@ -57,10 +57,6 @@
 	flex: 3;
 	justify-content: flex-end;
 	padding-right: 28rpx;
-}
-
-.cu-card .cu-item:not(:first-child) {
-	margin-top: 20rpx;
 }
 
 .cu-item image {
@@ -124,11 +120,11 @@
 	margin-bottom: 8rpx;
 }
 
-.cu-item .desc {
+.work-desc {
 	padding: 10rpx 30rpx;
 }
 
-.cu-item .desc > text {
+.work-desc text {
 	display: -webkit-box;
 	font-size:28rpx;
 	/* color:#000000; */
@@ -140,9 +136,16 @@
 	text-overflow:ellipsis;
 }
 
+.btn-container {
+	position: absolute;
+	right: 20rpx;
+	margin-bottom: 20rpx;
+}
+
 .btn-container button {
 	width: 250rpx;
-	height: 80rpx;
+	height: 70rpx;
+	font-size: 1em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -151,6 +154,10 @@
 	color: white;
 	letter-spacing: 4rpx;
 	border-radius: 50rpx;
+}
+
+.cu-card .cu-item {
+	padding-bottom: 80rpx;
 }
 
 .reg-infos {
@@ -193,4 +200,23 @@
 
 .reg-infos text {
 	margin: 8rpx 0;
+}
+
+/* rank */
+.cu-card {
+	position: relative;
+	margin-top: 10rpx;
+}
+
+.cu-card .ranking {
+	position: absolute;
+	top: 40rpx;
+	right: 20rpx;
+}
+
+.cus-activity {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	margin: 20rpx 0;
 }

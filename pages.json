@@ -101,10 +101,6 @@
 			"path": "pages/plugin/verticalnav",
 			"style": {}
 		}
-	    ,{
-            "path" : "pages/home/home",
-            "style" : {}
-        }
         ,{
             "path" : "pages/activity-intro/activity-intro",
             "style" : {}
@@ -130,8 +126,20 @@
 		    "style" : {}
 		},
 		{
-		    "path" : "pages/work-show/language",
+		    "path" : "pages/work-show/detail/pic-details",
 		    "style" : {}
+		},
+		{
+		    "path" : "pages/work-show/language",
+		    "style" : {
+				"backgroundColorTop":"#FFFFFF", // iOS下拉bounce回弹区域的颜色 (与down.bgColor同步)
+				"backgroundColorBottom":"#FFFFFF", // iOS上拉bounce回弹区域的颜色 (与up.bgColor同步)
+				"disableScroll": false, //删除此项: mescroll-body必须允许原生页面滚动, 默认false
+				"enablePullDownRefresh" : false, //删除此项: 不开启系统自带的下拉刷新, 默认false
+				"app-plus" : {
+					"bounce" : "none" //可选: 是否禁止iOS回弹和Android触顶触底的弧形阴影, 默认允许 (可配在 'globalStyle')
+				}
+			}
 		}
         ,{
             "path" : "pages/profile/profile",
@@ -169,6 +177,10 @@
             "path" : "pages/edu/edu",
             "style" : {}
         }
+        ,{
+            "path" : "pages/work-show/detail/detail",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"mp-alipay": {
@@ -179,14 +191,15 @@
 		"navigationBarBackgroundColor": "#0081ff",
 		"navigationBarTitleText": "ColorUi for UniApp",
 		"navigationStyle": "custom",
-		"navigationBarTextStyle": "white"
+		"navigationBarTextStyle": "white",
+		"backgroundColorTop":"#FFFFFF"
 	},
 	"usingComponts": true,
 		"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
 				"name": "首页", //模式名称
-				"path": "pages/home/home", //启动页面
+				"path": "pages/index/index", //启动页面
 				"query": "" //启动参数
 			},
 			{
@@ -267,7 +280,7 @@
 			{
 				"name": "我的作品", //模式名称
 				"path": "pages/profile/my-work", //启动页面
-				"query": "" //启动参数
+				"query": "category=外语类" //启动参数
 			}
 		]
 	}

@@ -21,7 +21,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="btn-container">
+			<view class="btn-container" v-if="openFlag">
 				<button class="round" @click="toSubmitType">了解详情</button>
 				<button class="round" @click="toWorkShow">作品展示</button>
 			</view>
@@ -30,10 +30,11 @@
 </template>
 
 <script>
+	const { loadEntryStatus } = require('../common/entry.js')
 	export default {
 		data() {
 			return {
-				
+				openFlag: false
 			}
 		},
 		methods: {
@@ -47,6 +48,14 @@
 					url: '/pages/work-show/edu'
 				})
 			}
+		},
+		onLoad: function() {
+			const that = this;
+			const entryPromise = loadEntryStatus();
+			entryPromise.then((res) => {
+				console.log(res);
+				that.openFlag = res.data;
+			});
 		}
 	}
 </script>

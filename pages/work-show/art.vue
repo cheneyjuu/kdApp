@@ -16,200 +16,195 @@
 			</view>
 		</view> -->
 		<view class="container">
-			<scroll-view scroll-y="true" class="content bg-white margin-top">
-				<view class="cu-card case no-card">
+			<mescroll-body ref="mescrollRef" @init="mescrollInit" @down="downCallback" @up="upCallback" :down="downOption" :up="upOption" class="body">
+				<view class="cu-card case no-card" v-for="(item, index) in dataList" :key="index">
+					<view class="ranking" v-if="item.workRank && item.workRank < 100000">
+						<image v-if="item.workRank === 1" src="../../static/ranking/no1.png" mode="widthFix" style="width: 60rpx; height: 60rpx;"></image>
+						<image v-else-if="item.workRank === 2" src="../../static/ranking/no2.png" mode="widthFix" style="width: 60rpx; height: 60rpx;"></image>
+						<image v-else-if="item.workRank === 3" src="../../static/ranking/no3.png" mode="widthFix" style="width: 60rpx; height: 60rpx;"></image>
+						<view v-else class="cu-avatar round">{{item.workRank}}</view>
+					</view>
 					<view class="cu-item shadow">
-						<view class="flex align-center padding-left padding-top"><view class="text-cut text-xl">作品名称</view></view>
-						<view class="desc">
-							<text>
-								<text>创作说明：</text>
-								为艺术而人生，为人生而艺术，吾以吾法表达吾之审美理想，天马行空地思考，自由自在地表达，方法手段无拘无束，材料媒介没有界限，突破抽象与具象的藩篱，于冥冥之中揣摩到美的极光，体味心灵的自由。
-							</text>
+						<view class="flex align-center padding-left padding-top"><view class="text-cut text-xl">{{item.worksName}}</view></view>
+						<view class="flex margin-top-sm text-sm padding-left">
+							<view class="flex flex-direction">
+								<view>作者：{{item.author}}</view>
+								<view class="text-cut text-gray">{{item.submitTime.substring(5, 16)}}・{{item.college}}・{{item.grade}}</view>
+							</view>
 						</view>
-						<view class="image">
+						
+						<view class="image" v-if="item.worksType === '文档类'">
 							<image
-								src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597060339166&di=5080a3aa445e7810887d6e40ccf3456d&imgtype=0&src=http%3A%2F%2Fpic34.photophoto.cn%2F20150119%2F0006019059970869_b.jpg"
+								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/documents.png" mode="aspectFill"
 							></image>
 						</view>
-						<view class="cu-list menu-avatar">
-							<view class="cu-item cus-activity">
-								<view class="activity-info flex flex-direction">
-									<view class="user flex padding-left"><view class="author">作者：李四（xx 年级）</view></view>
-									<view class="text-gray">上传日期：2020-08-20</view>
-								</view>
-								<view class="activity-action btn-container"><button class="cu-btn round">查看详情</button></view>
-							</view>
+						<view v-if="item.worksType === '视频类'">
+							<video 
+							      id="myVideo" 
+							      :src="item.filePath" 
+							      @error="videoErrorCallback" 
+							      :show-center-play-btn='false' 
+							      :show-play-btn="true" 
+							      controls
+							    ></video>
 						</view>
-						<view class="padding-sm padding-left flex text-gray text-sm">
-							<view class="padding-right-sm"> 50 展现</view>
-							<view> 20 阅读</view>
+						<view class="image audio-container" v-if="item.worksType === '音频类'">
+							<image
+								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/audio2.png" mode="aspectFill"
+							></image>
+						</view>
+						
+						<view class="work-desc">
+							<text>创作说明：{{item.workDesc}}</text>
+						</view>
+						
+						<view class="btn-container">
+							<button @click="openDocument(item)" v-if="item.worksType === '文档类'">查看详情</button>
+							<button @click="viewDetail(item)" v-if="item.worksType !== '文档类'">查看详情</button>
+						</view>
+						<view class="padding-sm padding-left flex text-gray text-sm" >
+							<view class="padding-right-sm">指导老师：<text v-if="item.teacher">{{item.teacher}}・{{item.teacherCollege}}</text></view>
 						</view>
 					</view>
 				</view>
-			</scroll-view>
+			</mescroll-body>
 		</view>
-
-		<!-- <view class="container"> -->
-		<!-- <view class="header"></view> -->
-		<!-- <scroll-view scroll-y="true" class="content">
-				
-				
-				<view class="cu-bar solid-bottom text-red no-card">
-					<view class="action">
-						<text class="cuIcon-discover" style="font-size: 40rpx;"></text>
-						<text class="text-lg text-bold">文学类</text>
-					</view>
-				</view>
-				<view class="cu-card case no-card">
-					<view class="cu-item shadow">
-						<view class="flex align-center padding-left padding-top">
-							<view class="text-cut text-xl">文学类作品标题</view>
-						</view>
-						<view class="image"><image src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1921475000,2994854366&fm=26&gp=0.jpg"></image></view>
-						<view class="cu-list menu-avatar">
-							<view class="cu-item cus-activity">
-								<view class="activity-info solid-bottom padding">
-									<view class="user">张三</view>
-									<view class="text-dark-blue">
-										2020-08-20
-									</view>
-								</view>
-								<view class="activity-action"><button class="cu-btn round bg-gradual-red">查看详情</button></view>
-							</view>
-						</view>
-					</view>
-					
-					<view class="cu-item shadow">
-						<view class="flex align-center padding-left padding-top">
-							<view class="text-cut text-xl">文学类作品标题</view>
-						</view>
-						<view class="image"><image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597060339166&di=5080a3aa445e7810887d6e40ccf3456d&imgtype=0&src=http%3A%2F%2Fpic34.photophoto.cn%2F20150119%2F0006019059970869_b.jpg"></image></view>
-						<view class="cu-list menu-avatar">
-							<view class="cu-item cus-activity">
-								<view class="activity-info solid-bottom padding">
-									<view class="user">李四</view>
-									<view class="text-gray">
-										2020-08-20
-									</view>
-								</view>
-								<view class="activity-action"><button class="cu-btn round bg-gradual-red">查看详情</button></view>
-							</view>
-						</view>
-					</view>
-				</view>
-				
-				<view class="cu-bar solid-bottom text-red no-card">
-					<view class="action">
-						<text class="cuIcon-discover" style="font-size: 40rpx;"></text>
-						<text class="text-lg text-bold">艺术类</text>
-					</view>
-				</view>
-				<view class="cu-card case no-card">
-					<view class="cu-item shadow">
-						<view class="flex align-center padding-left padding-top">
-							<view class="text-cut text-xl">艺术类作品标题</view>
-						</view>
-						<video 
-						  id="myVideo" 
-						  src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" 
-						  binderror="videoErrorCallback" 
-						  show-center-play-btn='true'
-						  controls
-						></video>
-						<view class="cu-list menu-avatar">
-							<view class="cu-item cus-activity">
-								<view class="activity-info solid-bottom padding">
-									<view class="user">王五</view>
-									<view class="text-gray">
-										2020-08-20
-									</view>
-								</view>
-								<view class="activity-action"><button class="cu-btn round bg-gradual-red">查看详情</button></view>
-							</view>
-						</view>
-					</view>
-				</view>
-				
-				<view class="cu-bar solid-bottom text-red no-card">
-					<view class="action">
-						<text class="cuIcon-discover" style="font-size: 40rpx;"></text>
-						<text class="text-lg text-bold">文学与教育类</text>
-					</view>
-				</view>
-				<view class="cu-card case no-card">
-					<view class="cu-item shadow">
-						<view class="flex align-center padding-left padding-top">
-							<view class="text-cut text-xl">文学与教育类作品标题</view>
-						</view>
-						<video 
-						  id="myVideo" 
-						  src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" 
-						  binderror="videoErrorCallback" 
-						  show-center-play-btn='true'
-						  controls
-						></video>
-						<view class="cu-list menu-avatar">
-							<view class="cu-item cus-activity">
-								<view class="activity-info solid-bottom padding">
-									<view class="user">赵六</view>
-									<view class="text-gray">
-										2020-08-20
-									</view>
-								</view>
-								<view class="activity-action"><button class="cu-btn round bg-gradual-red">查看详情</button></view>
-							</view>
-						</view>
-					</view>
-					
-					<view class="cu-item shadow">
-						<view class="flex align-center padding-left padding-top">
-							<view class="text-cut text-xl">文学与教育类作品标题</view>
-						</view>
-						<view class="image"><image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597060339166&di=5080a3aa445e7810887d6e40ccf3456d&imgtype=0&src=http%3A%2F%2Fpic34.photophoto.cn%2F20150119%2F0006019059970869_b.jpg"></image></view>
-						<view class="cu-list menu-avatar">
-							<view class="cu-item cus-activity">
-								<view class="activity-info solid-bottom padding">
-									<view class="user">孙七</view>
-									<view class="text-gray">
-										2020-08-20
-									</view>
-								</view>
-								<view class="activity-action"><button class="cu-btn round bg-gradual-red">查看详情</button></view>
-							</view>
-						</view>
-					</view>
-				</view>
-			</scroll-view> -->
-		<!-- </view> -->
 	</view>
 </template>
 
 <script>
+import * as constants from '@/utils/constant.js';
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
+import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"; 
 export default {
+	mixins: [MescrollMixin], // 使用mixin
+	components: {
+		MescrollBody
+	},
 	data() {
-		return {};
+		return {
+			mescroll: null, // mescroll实例对象 (此行可删,mixins已默认)
+			// 上拉加载的配置(可选, 绝大部分情况无需配置)
+			upOption: {
+				page: {
+					num: -1,
+					size: 10 // 每页数据的数量,默认10
+				},
+				noMoreSize: 5, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
+				empty: {
+					tip: '暂无相关数据'
+				}
+			},
+			// 列表数据
+			dataList: [],
+			videoContext: null,
+			innerAudioContext: null,
+			isAudioPlayed: false
+		};
 	},
 	methods: {
-		openDocument: function() {
-			wx.downloadFile({
-				url: 'http://**.*****.***/reshaiwai/demo.pdf', //要预览的PDF的地址
+		openDocument: function(item) {
+			console.log('查看文件', item.filePath);
+			uni.downloadFile({
+				url: item.filePath, //要预览的地址
 				success: function(res) {
 					console.log(res);
 					if (res.statusCode === 200) {
 						//成功
-						var Path = res.tempFilePath; //返回的文件临时地址，用于后面打开本地预览所用
-						wx.openDocument({
-							filePath: Path, //要打开的文件路径
-							success: function(res) {
-								console.log('打开PDF成功');
+						const filePath = res.tempFilePath; //返回的文件临时地址，用于后面打开本地预览所用
+						console.log('Path', filePath);
+						// wx.openDocument({
+						// 	filePath: Path, //要打开的文件路径
+						// 	success: function(res) {
+						// 		console.log('打开PDF成功');
+						// 	}
+						// });
+						uni.openDocument({
+							filePath: filePath,
+							fileType: item.fileSuffix,
+							success:function(){
+								console.log('打开成功');
 							}
-						});
+						})
 					}
 				},
 				fail: function(res) {
 					console.log(res); //失败
 				}
 			});
+		},
+		viewDetail: function(item) {
+			uni.navigateTo({
+				url: `/pages/work-show/detail/detail?item=${JSON.stringify(item)}`
+			})
+		},
+		playVideo: function() {
+			this.videoContext.play();
+		},
+		playAudio: function(item) {
+			console.log('准备播放音频');
+			const that = this;
+			const innerAudioContext = wx.createInnerAudioContext();
+			that.innerAudioContext = innerAudioContext;
+			console.log(that.innerAudioContext);
+			innerAudioContext.autoplay = true;
+			innerAudioContext.src = item.filePath;
+			innerAudioContext.onPlay(() => {
+			  console.log('开始播放');
+			  that.isAudioPlayed = true;
+			})
+			innerAudioContext.onError((res) => {
+			  console.log(res.errMsg);
+			  console.log(res.errCode);
+			})
+		},
+		stopAudio: function() {
+			console.log('准备停止音频');
+			const that = this;
+			console.log(that.innerAudioContext);
+			that.innerAudioContext.stop();
+			that.innerAudioContext.onStop(() => {
+				console.log('音频停止成功');
+				that.isAudioPlayed = false;
+			});
+		},
+		videoErrorCallback: function(e) {
+			console.log(e.detail.errMsg);
+		},
+		downCallback(){
+			this.mescroll.resetUpScroll(); // 重置列表为第一页 (自动执行 page.num=1, 再触发upCallback方法 )
+		},
+		/*上拉加载的回调*/
+		upCallback(page) {
+			let pageNum = page.num; // 页码, 默认从1开始
+			let pageSize = page.size; // 页长, 默认每页10条
+			uni.request({
+				url: `${constants.baseUrl}/works?category=艺术类&pageNum=${pageNum}&pageSize=${pageSize}`,
+				success: (res) => {
+					const data = res.data;
+					const totalCount = res.header['X-Total-Count'];
+					// 接口返回的当前页数据列表 (数组)
+					let curPageData = data; 
+					// 接口返回的当前页数据长度 (如列表有26个数据,当前页返回8个,则curPageLen=8)
+					let curPageLen = data.length; 
+					// 接口返回的总页数 (如列表有26个数据,每页10条,共3页; 则totalPage=3)
+					let totalPage = totalCount / 10; 
+					// 接口返回的总数据量(如列表有26个数据,每页10条,共3页; 则totalSize=26)
+					let totalSize = totalCount; 
+					// 接口返回的是否有下一页 (true/false)
+					let hasNext = data.length > 0; 
+					//设置列表数据
+					if(page.num == 0) this.dataList = []; //如果是第一页需手动置空列表
+					this.dataList = this.dataList.concat(curPageData); //追加新数据
+					// 请求成功,隐藏加载状态
+					//方法一(推荐): 后台接口有返回列表的总页数 totalPage
+					this.mescroll.endByPage(curPageLen, totalPage); 
+				},
+				fail: () => {
+					//  请求失败,隐藏加载状态
+					this.mescroll.endErr()
+				}
+			})
 		}
 	}
 };

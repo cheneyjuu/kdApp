@@ -13,6 +13,11 @@ Vue.component('plugin',plugin)
 import cuCustom from './colorui/components/cu-custom.vue'
 Vue.component('cu-custom',cuCustom)
 
+import MescrollBody from "@/components/mescroll-uni/mescroll-body.vue"
+import MescrollUni from "@/components/mescroll-uni/mescroll-uni.vue"
+Vue.component('mescroll-body', MescrollBody)
+Vue.component('mescroll-uni', MescrollUni)
+
 Vue.config.productionTip = false
 
 App.mpType = 'app'
