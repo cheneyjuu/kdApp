@@ -31,7 +31,7 @@
 							<view class="audio-control audio-control-next" v-if="control" :style="{borderColor:color}" @click="next">&#xe601;</view>
 						</view>
 					</view> -->
-					<imt-audio autoplay continue :src="audio[now]" :duration="audio[now].duration" @prev="now = now === 0?audio.length-1:now-1" @next="now = now === audio.length-1?0:now+1"></imt-audio>
+					<imt-audio :src="audio[now]" :duration="audio[now].duration" @prev="now = now === 0?audio.length-1:now-1" @next="now = now === audio.length-1?0:now+1"></imt-audio>
 				</view>
 			</view>
 			<view class="title-box flex flex-direction justify-start">
@@ -62,119 +62,16 @@
 			return {
 				item: null,
 				videoContext: null,
-				// audio: uni.createInnerAudioContext(),
+				src: null,
 				timer: null,
-				currentTime: '', //当前播放时间
-				durationTime: '', //总时长
-				current: '', //slider当前进度
-				loading: false, //是否处于读取状态
-				paused: true, //是否处于暂停状态
-				seek: false ,//是否处于拖动状态,
-				audio: ['https://kdwx.iamedu.cn:8443/api/downloadFile/video/Introduction1601966461088.mp3'],
+				audio: [],
 				now: 0
 			}
 		},
-		props: {
-			src: String, //音频链接
-			autoplay: Boolean, //是否自动播放
-			duration: Number, //总时长（单位：s）
-			durationDesc: String, //总时长（单位：s）
-			control: {
-				type:Boolean,
-				default:true
-			}, //是否需要上一曲/下一曲按钮
-			continue:Boolean,//播放完成后是否继续播放下一首，需定义@next事件
-			color: {
-				type:String,
-				default:'#169af3'
-			}
-		},
+
 		methods: {
 			playVideo: function() {
 				this.videoContext.play();
-			},
-			//返回prev事件
-			prev() {
-				this.$emit('prev')
-			},
-			//返回next事件
-			next() {
-				this.$emit('next')
-			},
-			//格式化时长
-			format(num) {
-				return '0'.repeat(2 - String(Math.floor(num / 60)).length) + Math.floor(num / 60) + ':' + '0'.repeat(2 - String(
-					Math.floor(num % 60)).length) + Math.floor(num % 60)
-			},
-			//播放/暂停操作
-			operation() {
-				if (this.audio.paused) {
-					this.audio.play()
-					this.loading = false
-				} else {
-					this.audio.pause()
-				}
-			},
-			//完成拖动事件
-			change(e) {
-				audio.seek(e.detail.value)
-			}
-		},
-		created() {
-			// this.audio = uni.createInnerAudioContext();
-			console.log('created');
-			this.audio.src = this.src
-			this.current = 0
-			this.durationTime = this.format(this.duration)
-			this.audio.obeyMuteSwitch = false
-			this.audio.autoplay = false
-			//音频进度更新事件
-			this.audio.onTimeUpdate(() => {
-				if (!this.seek) {
-					this.current = this.audio.currentTime
-				}
-			})
-			//音频播放事件
-			this.audio.onPlay(() => {
-				this.audio.paused = false
-				this.audio.loading = false
-			})
-			//音频暂停事件
-			this.audio.onPause(() => {
-				this.audio.paused = true
-			})
-			//音频结束事件
-			this.audio.onEnded(() => {
-				if (this.continue) {
-					this.next()
-				} else {
-					this.audio.paused = true
-					this.current = 0
-				}
-			})
-			//音频完成更改进度事件
-			this.audio.onSeeked(() => {
-				this.seek = false
-			})
-		},
-		watch: {
-			//监听音频地址更改
-			src(e) {
-				this.audio.src = e
-				this.current = 0
-				this.audio.play()
-				this.loading = true;
-				this.audio.onCanplay(() => {
-					this.loading = false;
-				});
-			},
-			//监听总时长改变
-			duration(e) {
-				this.durationTime = this.format(e)
-			},
-			//监听当前进度改变
-			current(e) {
-				this.currentTime = this.format(e)
 			}
 		},
 		onLoad: function(param){
@@ -184,13 +81,13 @@
 			this.item = work;
 			
 			this.src = this.item.filePath;
-			this.duration = this.item.duration;
+			// this.duration = this.item.duration;
 			// this.paused = true;
 			// this.autoplay = false;
-			this.audio.push(src);
+			this.audio.push(this.src);
 		},
 		onUnload: function() {
-			this.audio.destroy();
+			// this.audio.destroy();
 		}
 	}
 </script>
