@@ -34,12 +34,12 @@
 						</view>
 						
 						<view class="image" v-if="item.worksType === '文档类'">
-							<image
+							<image @click="openDocument(item)"
 								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/documents.png" mode="aspectFill"
 							></image>
 						</view>
 						<view v-if="item.worksType === '视频类'">
-							<video 
+							<video @click="viewDetail(item)"
 							      id="myVideo" 
 							      :src="item.filePath" 
 							      @error="videoErrorCallback" 
@@ -49,7 +49,7 @@
 							    ></video>
 						</view>
 						<view class="image audio-container" v-if="item.worksType === '音频类'">
-							<image
+							<image @click="viewDetail(item)"
 								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/audio2.png" mode="aspectFill"
 							></image>
 						</view>
@@ -110,6 +110,9 @@ export default {
 				success: function(res) {
 					console.log(res);
 					if (res.statusCode === 200) {
+						uni.showLoading({
+							title: '正在打开...'
+						})
 						//成功
 						const filePath = res.tempFilePath; //返回的文件临时地址，用于后面打开本地预览所用
 						console.log('Path', filePath);
@@ -124,6 +127,7 @@ export default {
 							fileType: item.fileSuffix,
 							success:function(){
 								console.log('打开成功');
+								uni.hideLoading();
 							}
 						})
 					}
