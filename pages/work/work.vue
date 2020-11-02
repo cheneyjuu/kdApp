@@ -241,15 +241,16 @@ export default {
 					console.log('payload worksType', that.payload.worksType);
 					let fileSize = 20 * 1024 * 1024;
 					let fileSizeDesc = '文件不能超过20M';
-					if (that.payload.worksType === '音频类') {
-						if (fileExt.toUpperCase() !== 'MP3' || fileExt.toUpperCase() !== 'M4A' || fileExt.toUpperCase() !== 'AAC' || fileExt.toUpperCase() !== 'WAV' || fileExt.toUpperCase() !== 'FLAC') {
-							uni.showToast({
-								icon: 'none',
-								title: ' 作品文件类型不正确'
-							})
-							return;
-						}
-					}
+					// if (that.payload.worksType === '音频类') {
+					// 	if (fileExt.toUpperCase() !== 'MP3' || fileExt.toUpperCase() !== 'M4A' || fileExt.toUpperCase() !== 'AAC' || fileExt.toUpperCase() !== 'WAV' || fileExt.toUpperCase() !== 'FLAC') {
+					// 		console.log("文件类型不正确", fileExt.toUpperCase(), fileExt.toUpperCase() !== 'M4A');
+					// 		uni.showToast({
+					// 			icon: 'none',
+					// 			title: ' 作品文件类型不正确'
+					// 		})
+					// 		return;
+					// 	}
+					// }
 					
 					if (that.payload.worksType === '视频类') {
 						fileSize = 50 * 1024 * 1024;
