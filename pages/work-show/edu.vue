@@ -34,7 +34,11 @@
 						</view>
 						
 						<view class="image" v-if="item.worksType === '文档类'">
-							<image @click="openDocument(item)"
+							<image v-if="item.fileSuffix==='jpg' || item.fileSuffix==='jpeg' ||item.fileSuffix==='png'"
+								@click="viewPicDetail(item)"
+								:src="item.filePath" mode="aspectFill"
+							></image>
+							<image v-else @click="openDocument(item)"
 								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/documents.png" mode="aspectFill"
 							></image>
 						</view>
@@ -59,8 +63,9 @@
 						</view>
 						
 						<view class="btn-container">
-							<button @click="openDocument(item)" v-if="item.worksType === '文档类'">查看详情</button>
-							<button @click="viewDetail(item)" v-if="item.worksType !== '文档类'">查看详情</button>
+							<button @click="viewPicDetail(item)" v-if="item.fileSuffix==='jpg' || item.fileSuffix==='jpeg' ||item.fileSuffix==='png'">查看详情</button>
+							<button @click="openDocument(item)" v-else-if="item.fileSuffix==='doc' || item.fileSuffix==='pdf' ||item.fileSuffix==='ppt' ||item.fileSuffix==='docx' ||item.fileSuffix==='pptx'">查看详情</button>
+							<button @click="viewDetail(item)" v-else>查看详情</button>
 						</view>
 						<view class="padding-sm padding-left flex text-gray text-sm" v-if="item.teacher">
 							<view class="padding-right-sm">指导老师：<text v-if="item.teacher">{{item.teacher}}・{{item.teacherCollege}}</text></view>
@@ -104,15 +109,16 @@ export default {
 	},
 	methods: {
 		openDocument: function(item) {
+			uni.showLoading({
+				title: '正在打开...',
+				mask: true
+			})
 			console.log('查看文件', item.filePath);
 			uni.downloadFile({
 				url: item.filePath, //要预览的地址
 				success: function(res) {
 					console.log(res);
 					if (res.statusCode === 200) {
-						uni.showLoading({
-							title: '正在打开...'
-						})
 						//成功
 						const filePath = res.tempFilePath; //返回的文件临时地址，用于后面打开本地预览所用
 						console.log('Path', filePath);
@@ -130,6 +136,12 @@ export default {
 								uni.hideLoading();
 							}
 						})
+					} else {
+						uni.showToast({
+							icon:'none',
+							title: '文件不存在'
+						})
+						uni.hideLoading();
 					}
 				},
 				fail: function(res) {
@@ -140,6 +152,11 @@ export default {
 		viewDetail: function(item) {
 			uni.navigateTo({
 				url: `/pages/work-show/detail/detail?item=${JSON.stringify(item)}`
+			})
+		},
+		viewPicDetail: function(item) {
+			uni.navigateTo({
+				url: `/pages/work-show/detail/pic-details?item=${JSON.stringify(item)}`
 			})
 		},
 		playVideo: function() {

@@ -34,12 +34,18 @@
 						</view>
 						
 						<view class="image" v-if="item.worksType === '文档类'">
-							<image
+							<image v-if="item.fileSuffix==='jpg' || item.fileSuffix==='jpeg' ||item.fileSuffix==='png'"
+								@click="viewPicDetail(item)"
+								:src="item.filePath" mode="aspectFill"
+							></image>
+							<image v-else
+								@click="openDocument(item)"
 								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/documents.png" mode="aspectFill"
 							></image>
 						</view>
 						<view v-if="item.worksType === '视频类'">
 							<video 
+									@click="viewDetail(item)"
 							      id="myVideo" 
 							      :src="item.filePath" 
 							      @error="videoErrorCallback" 
@@ -50,6 +56,7 @@
 						</view>
 						<view class="image audio-container" v-if="item.worksType === '音频类'">
 							<image
+								@click="viewDetail(item)"
 								src="https://kdapp.oss-cn-shanghai.aliyuncs.com/audio2.png" mode="aspectFill"
 							></image>
 						</view>
@@ -59,8 +66,9 @@
 						</view>
 						
 						<view class="btn-container">
-							<button @click="openDocument(item)" v-if="item.worksType === '文档类'">查看详情</button>
-							<button @click="viewDetail(item)" v-if="item.worksType !== '文档类'">查看详情</button>
+							<button @click="viewPicDetail(item)" v-if="item.fileSuffix==='jpg' || item.fileSuffix==='jpeg' ||item.fileSuffix==='png'">查看详情</button>
+							<button @click="openDocument(item)" v-else-if="item.fileSuffix==='doc' || item.fileSuffix==='pdf' ||item.fileSuffix==='ppt' ||item.fileSuffix==='docx' ||item.fileSuffix==='pptx'">查看详情</button>
+							<button @click="viewDetail(item)" v-else>查看详情</button>
 						</view>
 						<view class="padding-sm padding-left flex text-gray text-sm" >
 							<view class="padding-right-sm">指导老师：<text v-if="item.teacher">{{item.teacher}}・{{item.teacherCollege}}</text></view>
@@ -136,6 +144,11 @@ export default {
 		viewDetail: function(item) {
 			uni.navigateTo({
 				url: `/pages/work-show/detail/detail?item=${JSON.stringify(item)}`
+			})
+		},
+		viewPicDetail: function(item) {
+			uni.navigateTo({
+				url: `/pages/work-show/detail/pic-details?item=${JSON.stringify(item)}`
 			})
 		},
 		playVideo: function() {
