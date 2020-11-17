@@ -83,12 +83,12 @@ export default {
 	},
 	data() {
 		return {
-			mescroll: null, // mescroll实例对象 (此行可删,mixins已默认)
+			// mescroll: null, // mescroll实例对象 (此行可删,mixins已默认)
 			// 上拉加载的配置(可选, 绝大部分情况无需配置)
 			upOption: {
 				page: {
-					num: -1,
-					size: 10 // 每页数据的数量,默认10
+					// num: 0,
+					size: 20 // 每页数据的数量,默认10
 				},
 				noMoreSize: 5, // 配置列表的总数量要大于等于5条才显示'-- END --'的提示
 				empty: {
@@ -176,10 +176,10 @@ export default {
 		},
 		/*上拉加载的回调*/
 		upCallback(page) {
-			let pageNum = page.num; // 页码, 默认从1开始
+			let pageNum = page.num - 1; // 页码, 默认从1开始
 			let pageSize = page.size; // 页长, 默认每页10条
 			uni.request({
-				url: `${constants.baseUrl}/works?category=艺术类&pageNum=${pageNum}&pageSize=${pageSize}`,
+				url: `${constants.baseUrl}/works?category=艺术类&page=${pageNum}&size=${pageSize}`,
 				success: (res) => {
 					const data = res.data;
 					const totalCount = res.header['X-Total-Count'];
@@ -188,7 +188,7 @@ export default {
 					// 接口返回的当前页数据长度 (如列表有26个数据,当前页返回8个,则curPageLen=8)
 					let curPageLen = data.length; 
 					// 接口返回的总页数 (如列表有26个数据,每页10条,共3页; 则totalPage=3)
-					let totalPage = totalCount / 10; 
+					let totalPage = totalCount / 20; 
 					// 接口返回的总数据量(如列表有26个数据,每页10条,共3页; 则totalSize=26)
 					let totalSize = totalCount; 
 					// 接口返回的是否有下一页 (true/false)
